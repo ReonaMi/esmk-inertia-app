@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home\HomeController as Home;
+use App\Http\Controllers\Auth\AuthPengelolaController as AuthPengelola;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +15,11 @@ use App\Http\Controllers\Home\HomeController as Home;
 |
 */
 
-Route::get('/', [Home::class, 'index']);
+Route::middleware('guest')->group(function () {
+    // routing home
+    Route::get('/', [Home::class, 'index'])->name('get.home');
+    
+    // routing login pengelola
+    Route::get('/login-pengelola', [AuthPengelola::class, 'login'])->name('get.loginPengelola');
+    Route::post('/login-pengelola', [AuthPengelola::class, 'login'])->name('post.loginPengelola');
+});
