@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index(){
         $title = 'Beranda';
-        return Inertia::render('Home', [
+        return Inertia::render('Home/Home', [
             'title' => $title
         ]);
     }
